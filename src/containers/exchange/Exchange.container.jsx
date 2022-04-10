@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SearchContainer from '../search/Search.container';
+import ChartContainer from '../chart/Chart.container';
 
 export default function ExchangeContainer() {
   const [searchValue, setSearchValue] = useState({
@@ -20,6 +21,9 @@ export default function ExchangeContainer() {
   return (
     <div>
       <SearchContainer onSearch={handleSearch} />
+      {!!searchValue?.symbols && (
+      <ChartContainer searchValue={searchValue} />
+      )}
     </div>
   );
 }
