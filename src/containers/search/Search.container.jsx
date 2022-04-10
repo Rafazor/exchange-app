@@ -63,7 +63,6 @@ export default function SearchContainer({ onSearch }) {
         </div>
         )}
       </Box>
-
       {!!baseSymbol && (
       <Box display="flex" justifyContent="center">
         <TimeFramesComponent

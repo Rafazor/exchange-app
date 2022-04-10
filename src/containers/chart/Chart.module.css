@@ -3,4 +3,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 16px;
+}
+
+.skeleton {
+    border-radius: 8px;
 }

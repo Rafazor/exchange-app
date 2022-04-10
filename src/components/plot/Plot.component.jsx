@@ -16,7 +16,6 @@ export default function PlotComponent({ config }) {
       ]}
       layout={
                 {
-                  title: config?.title,
                   autosize: true,
                   yaxis: {
                     range: config?.yRange,
