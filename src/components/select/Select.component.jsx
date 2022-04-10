@@ -16,6 +16,8 @@ export default function SelectComponent(props) {
       onChange={handleChange}
       disablePortal
       id={id}
+      autoHighlight
+      getOptionLabel={(option) => option.label}
       options={options}
       sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label={label} />}

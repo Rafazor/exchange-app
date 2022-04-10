@@ -19,6 +19,11 @@ export default function SearchContainer({ onSearch }) {
 
   const handleBaseSymbolChange = (selectedOption) => {
     setBaseSymbol(selectedOption);
+
+    if (!selectedOption?.id) {
+      setSecondarySymbol(null);
+      setTimeFrame(timeFrames[2]);
+    }
   };
 
   const handleSecondarySymbolChange = (selectedOption) => {
@@ -35,9 +40,7 @@ export default function SearchContainer({ onSearch }) {
   );
 
   useEffect(() => {
-    if (baseSymbol?.id && secondarySymbol?.id && timeFrame?.startDate && timeFrame?.endDate) {
-      onSearch(baseSymbol.id, secondarySymbol.id, timeFrame.startDate, timeFrame.endDate);
-    }
+    onSearch(baseSymbol?.id, secondarySymbol?.id, timeFrame?.startDate, timeFrame?.endDate);
   }, [baseSymbol, secondarySymbol, timeFrame]);
 
   return (
