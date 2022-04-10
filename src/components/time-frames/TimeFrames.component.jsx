@@ -6,7 +6,7 @@ export default function TimeFramesComponent({ onChange, timeFrames, activeTimeFr
   return (
     <Box display="flex">
       {timeFrames?.map((timeFrame) => (
-        <Box key={timeFrame.label}>
+        <Box key={timeFrame.label} mr={1}>
           <Button
             variant={timeFrame?.label === activeTimeFrame?.label ? 'contained' : 'outlined'}
             size="small"

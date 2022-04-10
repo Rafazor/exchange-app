@@ -1,11 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 import { func } from 'prop-types';
+import { Box, Paper } from '@mui/material';
 import { getExchangeSymbols } from '../../api/apiExchange';
 import { mapOptions } from '../../utils/helpers';
 import SelectComponent from '../../components/select/Select.component';
 import TimeFramesComponent from '../../components/time-frames/TimeFrames.component';
 import { timeFrames } from '../../constants/constants';
+import styles from './Search.module.css';
 
 export default function SearchContainer({ onSearch }) {
   const {
@@ -39,8 +41,8 @@ export default function SearchContainer({ onSearch }) {
   }, [baseSymbol, secondarySymbol, timeFrame]);
 
   return (
-    <div>
-      <div>
+    <Paper elevation={5} className={styles.paperWrapper}>
+      <Box display="flex" justifyContent="space-evenly" alignItems="center" mb={3} width="100%" height="100%">
         <SelectComponent
           options={generateExchangeSymbols}
           onChange={handleBaseSymbolChange}
@@ -48,8 +50,7 @@ export default function SearchContainer({ onSearch }) {
           value={baseSymbol?.label}
           id="select-base"
         />
-      </div>
-      {!!baseSymbol && (
+        {!!baseSymbol && (
         <div>
           <SelectComponent
             options={generateExchangeSymbols}
@@ -58,14 +59,21 @@ export default function SearchContainer({ onSearch }) {
             value={secondarySymbol?.label}
             id="select-secondary"
           />
-          <TimeFramesComponent
-            onChange={handleTimeFrameChange}
-            timeFrames={timeFrames}
-            activeTimeFrame={timeFrame}
-          />
+
         </div>
+        )}
+      </Box>
+
+      {!!baseSymbol && (
+      <Box display="flex" justifyContent="center">
+        <TimeFramesComponent
+          onChange={handleTimeFrameChange}
+          timeFrames={timeFrames}
+          activeTimeFrame={timeFrame}
+        />
+      </Box>
       )}
-    </div>
+    </Paper>
   );
 }
 
