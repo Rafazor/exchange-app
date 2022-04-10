@@ -39,6 +39,7 @@ export default function SearchContainer({ onSearch }) {
           onChange={handleBaseSymbolChange}
           label="Base currency"
           value={baseSymbol?.label}
+          id="select-base"
         />
       </div>
       {!!baseSymbol && (
@@ -48,6 +49,7 @@ export default function SearchContainer({ onSearch }) {
             onChange={handleSecondarySymbolChange}
             label="Secondary currency"
             value={secondarySymbol?.label}
+            id="select-secondary"
           />
         </div>
       )}
