@@ -8,10 +8,12 @@ import SelectComponent from '../../components/select/Select.component';
 import TimeFramesComponent from '../../components/time-frames/TimeFrames.component';
 import { timeFrames } from '../../constants/constants';
 import styles from './Search.module.css';
+import ErrorComponent from '../../components/error/Error.component';
 
 export default function SearchContainer({ onSearch }) {
   const {
     data: exchangeSymbols,
+    error,
   } = useQuery('symbols', getExchangeSymbols);
   const [baseSymbol, setBaseSymbol] = useState();
   const [secondarySymbol, setSecondarySymbol] = useState();
@@ -75,6 +77,7 @@ export default function SearchContainer({ onSearch }) {
         />
       </Box>
       )}
+      <ErrorComponent error={!!error} />
     </Paper>
   );
 }

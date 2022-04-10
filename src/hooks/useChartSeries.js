@@ -50,11 +50,13 @@ export default function useChartSeries(rawData) {
     generateInformation(xAxis, yAxis);
   };
 
-  const { isLoading } = useQuery(['symbols', rawData], () => getTimeSeries(rawData), {
+  const { isLoading, error } = useQuery(['symbols', rawData], () => getTimeSeries(rawData), {
     enabled: !!rawData?.symbols && !!rawData?.base
             && !!rawData?.startDate && !!rawData?.endDate,
     onSuccess: generateData,
   });
 
-  return { config, information, isLoading };
+  return {
+    config, information, isLoading, error,
+  };
 }

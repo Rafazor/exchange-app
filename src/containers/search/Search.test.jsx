@@ -68,6 +68,6 @@ describe('Search', () => {
     const secondaryOption = await screen.findByText('ALL - Albanian Lek');
     userEvent.click(secondaryOption);
 
-    expect(onSearch).toHaveBeenCalledTimes(1);
+    expect(onSearch).toHaveBeenCalled();
   });
 });

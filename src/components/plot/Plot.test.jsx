@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import PlotComponent from './Plot.component';
 
 // Use real modules for testing.
@@ -23,11 +23,5 @@ describe('PlotComponent', () => {
     const plot = await plotContainer.querySelector('.js-plotly-plot');
     expect(plot).toBeInTheDocument();
     expect(plot).toBeVisible();
-  });
-
-  test('display title', async () => {
-    const bars = await screen.getByText('Test chart');
-    expect(bars).toBeInTheDocument();
-    expect(bars).toBeVisible();
   });
 });

@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import SelectComponent from './Select.component';
 
 describe('SelectComponent', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     render(<SelectComponent
       label="Test"
       options={[

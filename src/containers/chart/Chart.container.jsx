@@ -5,9 +5,12 @@ import useChartSeries from '../../hooks/useChartSeries';
 import PlotComponent from '../../components/plot/Plot.component';
 import styles from './Chart.module.css';
 import InformationComponent from '../../components/information/Information.component';
+import ErrorComponent from '../../components/error/Error.component';
 
 export default function ChartContainer({ searchValue }) {
-  const { config, information, isLoading } = useChartSeries(searchValue);
+  const {
+    config, information, isLoading, error,
+  } = useChartSeries(searchValue);
 
   if (isLoading) {
     return (
@@ -28,6 +31,7 @@ export default function ChartContainer({ searchValue }) {
       <Paper elevation={5} className={styles.paperWrapper}>
         <PlotComponent config={config} />
       </Paper>
+      <ErrorComponent error={!!error} />
     </>
   );
 }
