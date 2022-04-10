@@ -47,7 +47,7 @@ export default function SearchContainer({ onSearch }) {
 
   return (
     <Paper elevation={5} className={styles.paperWrapper}>
-      <Box display="flex" justifyContent="space-evenly" alignItems="center" mb={3} width="100%" height="100%">
+      <Box display="flex" justifyContent="space-evenly" alignItems="center" mb={baseSymbol ? 3 : 0} width="100%" height="100%">
         <SelectComponent
           options={generateExchangeSymbols}
           onChange={handleBaseSymbolChange}
@@ -64,7 +64,6 @@ export default function SearchContainer({ onSearch }) {
             value={secondarySymbol?.label}
             id="select-secondary"
           />
-
         </div>
         )}
       </Box>

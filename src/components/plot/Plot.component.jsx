@@ -14,15 +14,13 @@ export default function PlotComponent({ config }) {
           fill: 'tozeroy',
         },
       ]}
-      layout={
-                {
-                  autosize: true,
-                  yaxis: {
-                    range: config?.yRange,
-                    autorange: false,
-                  },
-                }
-            }
+      layout={{
+        autosize: true,
+        yaxis: {
+          range: config?.yRange,
+          autorange: false,
+        },
+      }}
     />
   );
 }
