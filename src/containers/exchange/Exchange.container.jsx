@@ -10,11 +10,13 @@ export default function ExchangeContainer() {
     endDate: '2022-04-09',
   });
 
-  const handleSearch = (baseSymbol, secondarySymbol) => {
+  const handleSearch = (baseSymbol, secondarySymbol, startDate, endDate) => {
     setSearchValue((prevState) => ({
       ...prevState,
       base: baseSymbol,
       symbols: secondarySymbol,
+      startDate,
+      endDate,
     }));
   };
 

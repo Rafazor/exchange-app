@@ -4,6 +4,8 @@ import { func } from 'prop-types';
 import { getExchangeSymbols } from '../../api/apiExchange';
 import { mapOptions } from '../../utils/helpers';
 import SelectComponent from '../../components/select/Select.component';
+import TimeFramesComponent from '../../components/time-frames/TimeFrames.component';
+import { timeFrames } from '../../constants/constants';
 
 export default function SearchContainer({ onSearch }) {
   const {
@@ -11,6 +13,7 @@ export default function SearchContainer({ onSearch }) {
   } = useQuery('symbols', getExchangeSymbols);
   const [baseSymbol, setBaseSymbol] = useState();
   const [secondarySymbol, setSecondarySymbol] = useState();
+  const [timeFrame, setTimeFrame] = useState(timeFrames[2]);
 
   const handleBaseSymbolChange = (selectedOption) => {
     setBaseSymbol(selectedOption);
@@ -20,16 +23,20 @@ export default function SearchContainer({ onSearch }) {
     setSecondarySymbol(selectedOption);
   };
 
+  const handleTimeFrameChange = (selectedOption) => {
+    setTimeFrame(selectedOption);
+  };
+
   const generateExchangeSymbols = useMemo(
     () => mapOptions(exchangeSymbols?.symbols),
     [exchangeSymbols?.symbols],
   );
 
   useEffect(() => {
-    if (baseSymbol?.id && secondarySymbol?.id) {
-      onSearch(baseSymbol.id, secondarySymbol.id);
+    if (baseSymbol?.id && secondarySymbol?.id && timeFrame?.startDate && timeFrame?.endDate) {
+      onSearch(baseSymbol.id, secondarySymbol.id, timeFrame.startDate, timeFrame.endDate);
     }
-  }, [baseSymbol, secondarySymbol]);
+  }, [baseSymbol, secondarySymbol, timeFrame]);
 
   return (
     <div>
@@ -50,6 +57,11 @@ export default function SearchContainer({ onSearch }) {
             label="Secondary currency"
             value={secondarySymbol?.label}
             id="select-secondary"
+          />
+          <TimeFramesComponent
+            onChange={handleTimeFrameChange}
+            timeFrames={timeFrames}
+            activeTimeFrame={timeFrame}
           />
         </div>
       )}
