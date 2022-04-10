@@ -7,3 +7,12 @@ export function replacePathParams(path, params = {}) {
 
   return newPath;
 }
+
+export function mapOptions(obj) {
+  if (typeof obj !== 'object') return [];
+
+  return Object.keys(obj).map((key) => ({
+    id: key,
+    label: `${key} - ${obj[key]}`,
+  }));
+}
